@@ -22,8 +22,8 @@ public class Librarian extends User{
         }
         else if(String.valueOf(userID).startsWith("3")){
             System.out.println("It has successfully checked out.");
-            System.out.println("User: "+users.equals(userID));
-            System.out.println("Book: "+books.equals(bookId));
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
             LocalDate currentDate = LocalDate.now();
             System.out.println("check out date: " +currentDate);
             LocalDate fourteenDaysInTheFuture = LocalDate.now().plusDays(14);

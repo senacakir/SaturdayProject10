@@ -57,5 +57,5 @@ public class DataClass extends SelfCheckOut {
     public static HashMap<User, Integer> getUsers() {
         return users;
     }
-/ghfg
+
 }

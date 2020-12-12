@@ -3,64 +3,85 @@ package Functionalities;
 import Books.Book;
 import DataClass.DataClass;
 
+import java.time.LocalDate;
 import java.util.Scanner;
+
+import static DataClass.DataClass.getBooks;
+import static DataClass.DataClass.getUsers;
 
 public class SelfCheckOut {
 
-    public static void CheckOutBook()
-    {
-        System.out.println("Enter userId: ");
-        Scanner input = new Scanner(System.in);
-        int userIDinput= input.nextInt();
-        System.out.println("Enter bookId");
-        int bookIDinput = input.nextInt();
+    public void checkOutBook(int userID, int bookId ){
 
-        if(!DataClass.getBooks().containsValue(bookIDinput)){
-            do
-            { System.out.println("BookID is wrong, please enter BookID");
-            bookIDinput = input.nextInt();}
-
-            while (!DataClass.getBooks().containsValue(bookIDinput));
+        int borrowedBooks = 0;
+        if (String.valueOf(bookId).startsWith("9")){
+            System.out.println("This is a reference book, and it cannot be checked out.");
+        }else if (!String.valueOf(userID).equals(getUsers())){
+            System.out.println("This is not a registered librarian id. Please enter a valid userId");
         }
-        if(DataClass.getBooks().containsValue(bookIDinput) && DataClass.getBooks().containsKey(DataClass.referenceBooks)){
-        System.out.println("This is a reference book, and it cannot be checked out.");
-    }
-
-    if(!DataClass.getUsers().containsValue(userIDinput)){
-        do
-        { System.out.println("This is not a registered student id. Please enter a valid userId.");
-            userIDinput = input.nextInt();}
-
-        while (!DataClass.getUsers().containsValue(userIDinput));
-    }
-        if(DataClass.getBooks().containsValue(bookIDinput))
-        {
-            DataClass.getBooks().remove(bookIDinput);
+        else if(String.valueOf(userID).startsWith("3")){
             System.out.println("It has successfully checked out.");
-            System.out.println ("It is due in 7 days!");
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
+            LocalDate currentDate = LocalDate.now();
+            System.out.println("check out date: " +currentDate);
+            LocalDate fourteenDaysInTheFuture = LocalDate.now().plusDays(14);
+            System.out.println("due out date: " +fourteenDaysInTheFuture);
+            borrowedBooks++;
+            if (borrowedBooks<=3){
+                System.out.println("You borrowed: " +borrowedBooks+ "books");
+            }else {
+                System.out.println("You reached your number of book limits!");
+            }
 
         }
-        else
-            System.out.println("It is not in the library. Please enter a different book to be checked out");
+        else if(String.valueOf(userID).startsWith("2")){
+            System.out.println("It has successfully checked out.");
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
+            LocalDate currentDate = LocalDate.now();
+            System.out.println("check out date: " +currentDate);
+            LocalDate twentyOneDaysInTheFuture = LocalDate.now().plusDays(21);
+            System.out.println("due out date: " +twentyOneDaysInTheFuture);
+            borrowedBooks++;
+            if (borrowedBooks<=5){
+                System.out.println("You borrowed: " +borrowedBooks+ "books");
+            }else {
+                System.out.println("You reached your number of book limits!");
+            }
+
+        }
+        else if(String.valueOf(userID).startsWith("1")){
+            System.out.println("It has successfully checked out.");
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
+            LocalDate currentDate = LocalDate.now();
+            System.out.println("check out date: " +currentDate);
+            LocalDate thirtyDaysInTheFuture = LocalDate.now().plusDays(30);
+            System.out.println("due out date: " +thirtyDaysInTheFuture);
+            borrowedBooks++;
+            if (borrowedBooks<=10){
+                System.out.println("You borrowed: " +borrowedBooks+ "books");
+            }else {
+                System.out.println("You reached your number of book limits!");
+            }
+
+        }
 
     }
-
-    public static void CheckInBook()
+    public static void CheckInBook(int bookId,LocalDate thirtyDaysInTheFuture )
     {
-        System.out.println("Enter bookID to be checked in: ");
-        Scanner input = new Scanner(System.in);
-        int bookCheckIn = input.nextInt();
-        System.out.println("Enter the book name: ");
-        String bookName = input.next();
+     LocalDate localNow = LocalDate.now();
+         if(thirtyDaysInTheFuture==localNow){
+             if(DataClass.getBooks().containsValue(bookId))
+             {
 
+                 System.out.println("Thanks for returning it on time. Have a great day.");
 
-        if(DataClass.getBooks().containsValue(bookCheckIn))
-        {
-           // DataClass.addBooks().put(bookName,bookCheckIn);
-            System.out.println("Thanks for returning it on time. Have a great day.");
+             }
+             else
+                 System.out.println("The Book ID is either invalid or belongs to a book which has not checked out.");
 
-        }
-        else
-            System.out.println("The Book ID is either invalid or belongs to a book which has not checked out.");
+         }
     }
 }
