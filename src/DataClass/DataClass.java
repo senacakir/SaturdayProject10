@@ -48,9 +48,7 @@ public class DataClass extends SelfCheckOut {
         return userID;
     }
 
-    public static int getBookID() {
-        return bookID;
-    }
+
 
     public static HashMap<Book, Integer> getBooks() {
         return books;
@@ -59,4 +57,5 @@ public class DataClass extends SelfCheckOut {
     public static HashMap<User, Integer> getUsers() {
         return users;
     }
+
 }
