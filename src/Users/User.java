@@ -1,6 +1,7 @@
 package Users;
 
 import DataClass.DataClass;
+import Functionalities.SelfCheckOut;
 
 public class User extends DataClass {
 
@@ -19,6 +20,10 @@ public class User extends DataClass {
         }
 
         if (addUsers().containsValue(userID)){
+            System.out.println("userIds cannot be the the same as any other user's");
+        }
+
+        if (userID==getUserID()){
             System.out.println("userIds cannot be the the same as any other user's");
         }
     }

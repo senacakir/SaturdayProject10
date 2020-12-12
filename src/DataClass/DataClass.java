@@ -14,15 +14,20 @@ import java.util.HashMap;
 
 public class DataClass extends SelfCheckOut {
     
-    private HashMap<User, Integer> users = new HashMap();
-    private HashMap<Book, Integer> books = new HashMap<>();
+    private static HashMap<User, Integer> users = new HashMap();
+    private static HashMap<Book, Integer> books = new HashMap<>();
     private Librarian librarian;
     private Student student;
     private Teacher teacher;
-    private FictionBooks fictionBooks;
-    private NonFictionBooks nonFictionBooks;
-    private ReferenceBooks referenceBooks;
-    private int bookID;
+    private static FictionBooks fictionBooks;
+
+    public static void setBooks(HashMap<Book, Integer> books) {
+        DataClass.books = books;
+    }
+
+    private static NonFictionBooks nonFictionBooks;
+    public static ReferenceBooks referenceBooks;
+    private static int bookID;
     private int userID;
 
     public HashMap<User, Integer> addUsers() {
@@ -32,10 +37,26 @@ public class DataClass extends SelfCheckOut {
         return users;
     }
 
-    public HashMap<Book, Integer> addBooks() {
+    public static HashMap<Book, Integer> addBooks() {
         books.put(fictionBooks, bookID);
         books.put(nonFictionBooks, bookID);
         books.put(referenceBooks, bookID);
         return books;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public static int getBookID() {
+        return bookID;
+    }
+
+    public static HashMap<Book, Integer> getBooks() {
+        return books;
+    }
+
+    public static HashMap<User, Integer> getUsers() {
+        return users;
     }
 }
