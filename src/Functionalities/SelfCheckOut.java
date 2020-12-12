@@ -69,19 +69,44 @@ public class SelfCheckOut {
         }
 
     }
-    public static void CheckInBook(int bookId,LocalDate thirtyDaysInTheFuture )
+    public static void CheckInBook(int userID, int bookId,LocalDate borrowDate )
     {
      LocalDate localNow = LocalDate.now();
-         if(thirtyDaysInTheFuture==localNow){
+         if(String.valueOf(userID).startsWith("1")&&borrowDate==localNow.minusDays(30)){
              if(DataClass.getBooks().containsValue(bookId))
              {
-
                  System.out.println("Thanks for returning it on time. Have a great day.");
-
              }
              else
                  System.out.println("The Book ID is either invalid or belongs to a book which has not checked out.");
 
-         }
+         }else{
+             System.out.println("Thanks for returning. The due date was " +borrowDate +" Please do your best to return the books on time next time!");}
+
+        if(borrowDate ==localNow.minusDays(14)&&String.valueOf(userID).startsWith("3") ){
+            if(DataClass.getBooks().containsValue(bookId))
+            {
+                System.out.println("Thanks for returning it on time. Have a great day.");
+            }
+            else
+                System.out.println("The Book ID is either invalid or belongs to a book which has not checked out.");
+        }else{
+            System.out.println("Thanks for returning. The due date was " +borrowDate +" Please do your best to return the books on time next time!");}
+
+
+        if(borrowDate==localNow.minusDays(21)&&String.valueOf(userID).startsWith("2")){
+             if(DataClass.getBooks().containsValue(bookId))
+        {
+            System.out.println("Thanks for returning it on time. Have a great day.");
+
+        }
+            else
+            System.out.println("The Book ID is either invalid or belongs to a book which has not checked out.");
+
+        }else{
+        System.out.println("Thanks for returning. The due date was " +borrowDate +" Please do your best to return the books on time next time!");}
+
+
     }
+
 }

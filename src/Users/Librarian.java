@@ -38,8 +38,8 @@ public class Librarian extends User{
         }
         else if(String.valueOf(userID).startsWith("2")){
             System.out.println("It has successfully checked out.");
-            System.out.println("User: "+users.equals(userID));
-            System.out.println("Book: "+books.equals(bookId));
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
             LocalDate currentDate = LocalDate.now();
             System.out.println("check out date: " +currentDate);
             LocalDate twentyOneDaysInTheFuture = LocalDate.now().plusDays(21);
@@ -54,8 +54,8 @@ public class Librarian extends User{
         }
         else if(String.valueOf(userID).startsWith("1")){
             System.out.println("It has successfully checked out.");
-            System.out.println("User: "+users.equals(userID));
-            System.out.println("Book: "+books.equals(bookId));
+            System.out.println("User: "+getUsers().equals(userID));
+            System.out.println("Book: "+getBooks().equals(bookId));
             LocalDate currentDate = LocalDate.now();
             System.out.println("check out date: " +currentDate);
             LocalDate thirtyDaysInTheFuture = LocalDate.now().plusDays(30);
