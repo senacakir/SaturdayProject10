@@ -17,7 +17,7 @@ public class Librarian extends User{
         int borrowedBooks = 0;
         if (String.valueOf(bookId).startsWith("9")){
             System.out.println("This is a reference book, and it cannot be checked out.");
-        }else if (!String.valueOf(userID).equals(users)){
+        }else if (!String.valueOf(userID).equals(getUsers())){
             System.out.println("This is not a registered student id. Please enter a valid userId");
         }
         else if(String.valueOf(userID).startsWith("3")){
